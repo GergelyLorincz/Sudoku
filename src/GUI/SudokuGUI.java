@@ -18,7 +18,7 @@ public class SudokuGUI extends JFrame{
         GridLayout gridLayout = new GridLayout(9,9);
         grid.setLayout(gridLayout);
         grid.setPreferredSize(new Dimension(350,350));
-        for (int i = 1; i < 82; i++) {
+        for (int i = 0; i < 81; i++) {
             grid.add(new JTextField(("")));
         }
 
