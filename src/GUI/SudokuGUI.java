@@ -8,6 +8,7 @@ import static javax.swing.GroupLayout.Alignment.*;
 
 public class SudokuGUI extends JFrame{
 
+    JMenuItem easy, medium, hard;
 
     public SudokuGUI() {
 
@@ -25,9 +26,9 @@ public class SudokuGUI extends JFrame{
         }
         JMenuBar menuBar = new JMenuBar();
         JMenu newGame = new JMenu("New game");
-        JMenuItem easy = new JMenuItem("Easy");
-        JMenuItem medium = new JMenuItem("Medium");
-        JMenuItem hard = new JMenuItem("Hard");
+        easy = new JMenuItem("Easy");
+        medium = new JMenuItem("Medium");
+        hard = new JMenuItem("Hard");
         menuBar.add(newGame);
         newGame.add(easy);
         newGame.add(medium);
@@ -37,7 +38,6 @@ public class SudokuGUI extends JFrame{
         JButton erase = new JButton("Erase");
         JButton hint = new JButton("Hint");
         JButton restart = new JButton("Restart");
-
 
         newGame.setMinimumSize(new Dimension(225,30));
 
@@ -127,8 +127,8 @@ public class SudokuGUI extends JFrame{
 
         pack();
 
-        EasySetup easySetup = new EasySetup(fields);
-        easy.addActionListener(easySetup);
+        SetupAction setupAction = new SetupAction(fields);
+        easy.addActionListener(setupAction);
 
     }
 
