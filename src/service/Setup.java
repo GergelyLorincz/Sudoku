@@ -17,26 +17,24 @@ public class Setup {
                 sudokuStarter(sudokuTable, 4, 3);
             }
             case MEDIUM -> {
-                sudokuStarter(sudokuTable, 4, 5);
+                sudokuStarter(sudokuTable, 5, 4);
             }
             case HARD -> {
-                sudokuStarter(sudokuTable, 5, 6);
+                sudokuStarter(sudokuTable, 6, 5);
             }
         }
         return sudokuTable;
     }
 
-
-
     public static int[][] sudokuStarter(int[][] sudokuTable, int max, int min) {
         int[][] result = sudokuTable;
-        int replacedNums = MyUtil.getRandomInt(max, min);
 
         for (int i = 0; i < result.length; i++) {
+            int replacedNums = MyUtil.getRandomInt(max, min);
             int[] replacedIndexes = getRandomArray(replacedNums);
             for (int j = 0; j < result[i].length; j++) {
                 for (int k = 0; k < replacedIndexes.length; k++) {
-                    if (result[i][j] == replacedIndexes[k]) {
+                    if (j == replacedIndexes[k]) {
                         result[i][j] = 0;
                     }
                 }
@@ -65,4 +63,8 @@ public class Setup {
         }
         return randomArray;
     }
+
+    public Difficulty getDifficulty() {return difficulty;}
+
+    public void setDifficulty(Difficulty difficulty) {this.difficulty = difficulty;}
 }

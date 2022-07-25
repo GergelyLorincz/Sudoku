@@ -14,7 +14,7 @@ public class MyUtil {
 
     public static int getRandomInt(int max, int min) {
         Random random = new Random();
-        return random.nextInt(max) + min;
+        return random.nextInt(max - min + 1) + min;
     }
 
     public static int[] twoDToOneD(int[][] matrix) {
