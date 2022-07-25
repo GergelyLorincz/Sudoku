@@ -18,10 +18,14 @@ public class SudokuGUI extends JFrame{
         GridLayout gridLayout = new GridLayout(9,9);
         grid.setLayout(gridLayout);
         grid.setPreferredSize(new Dimension(350,350));
-        for (int i = 0; i < 81; i++) {
+        /*for (int i = 0; i < 81; i++) {
             grid.add(new JTextField(("")));
-        }
+        }*/
 
+        JTextField[] fields = emptyFields();
+        for (int i = 0; i < fields.length; i++) {
+            grid.add(fields[i]);
+        }
         JMenuBar menuBar = new JMenuBar();
         JMenu newGame = new JMenu("New game");
         JMenuItem easy = new JMenuItem("Easy");
@@ -126,5 +130,24 @@ public class SudokuGUI extends JFrame{
 
         pack();
 
+    }
+
+    private JTextField[] emptyFields() {
+        JTextField[] resultArray = new JTextField[81];
+        String[] emptyStrings = emptyStrings();
+        for (int i = 0; i < 81; i++) {
+            JTextField field = new JTextField(emptyStrings[i]);
+            resultArray[i] = field;
+        }
+        return resultArray;
+    }
+
+    private String[] emptyStrings() {
+        String[] resultArray = new String[81];
+        String empty = "";
+        for (int i = 0; i < resultArray.length; i++) {
+            resultArray[i] = empty;
+        }
+        return resultArray;
     }
 }

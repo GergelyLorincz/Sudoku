@@ -24,7 +24,7 @@ public class MyUtil {
             int[] row = matrix[i];
             for(int j = 0; j < row.length; j++) {
                 int number = matrix[i][j];
-                resultArray[i*row.length+j] = number;
+                resultArray[i * row.length + j] = number;
             }
         }
         return resultArray;
