@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import static javax.swing.GroupLayout.Alignment.*;
 
@@ -138,6 +140,14 @@ public class SudokuGUI extends JFrame{
         JTextField[] resultArray = new JTextField[81];
         for (int i = 0; i < 81; i++) {
             JTextField field = new JTextField("");
+            field.addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent e) {
+                    char c = e.getKeyChar();
+                    if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                        e.consume();
+                    }
+                }
+            });
             resultArray[i] = field;
         }
         return resultArray;
