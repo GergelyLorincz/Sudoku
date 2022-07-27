@@ -8,7 +8,7 @@ import static javax.swing.GroupLayout.Alignment.*;
 
 public class SudokuGUI extends JFrame{
 
-    JMenuItem easy, medium, hard;
+    public static JMenuItem easy, medium, hard;
 
     public SudokuGUI() {
 
@@ -129,6 +129,8 @@ public class SudokuGUI extends JFrame{
 
         SetupAction setupAction = new SetupAction(fields);
         easy.addActionListener(setupAction);
+        medium.addActionListener(setupAction);
+        hard.addActionListener(setupAction);
 
     }
 
@@ -140,4 +142,10 @@ public class SudokuGUI extends JFrame{
         }
         return resultArray;
     }
+
+    public JMenuItem getEasy() {return easy; }
+
+    public JMenuItem getMedium() {return medium; }
+
+    public JMenuItem getHard() {return hard; }
 }

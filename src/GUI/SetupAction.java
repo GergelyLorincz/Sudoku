@@ -3,6 +3,7 @@ package GUI;
 import service.Difficulty;
 import service.Setup;
 import util.MyUtil;
+import GUI.SudokuGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,12 +16,11 @@ public class SetupAction implements ActionListener {
     public SetupAction(JTextField[] fields) {this.fields = fields; }
 
     Setup setup = new Setup();
-    SudokuGUI sudokuGUI = new SudokuGUI();
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == sudokuGUI.easy) {
+        if (e.getSource() == SudokuGUI.easy) {
             setup.setDifficulty(Difficulty.EASY);
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
@@ -33,7 +33,7 @@ public class SetupAction implements ActionListener {
                 if (oneDStarter[i] != 0)
                     fields[i].setText("" + oneDStarter[i]);
             }
-        } else if (e.getSource() == sudokuGUI.medium) {
+        } else if (e.getSource() == SudokuGUI.medium) {
             setup.setDifficulty(Difficulty.MEDIUM);
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
@@ -46,7 +46,7 @@ public class SetupAction implements ActionListener {
                 if (oneDStarter[i] != 0)
                     fields[i].setText("" + oneDStarter[i]);
             }
-        } else if (e.getSource() == sudokuGUI.hard) {
+        } else if (e.getSource() == SudokuGUI.hard) {
             setup.setDifficulty(Difficulty.MEDIUM);
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
