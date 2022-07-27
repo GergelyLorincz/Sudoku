@@ -3,7 +3,6 @@ package GUI;
 import service.Difficulty;
 import service.Setup;
 import util.MyUtil;
-import GUI.SudokuGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,9 +10,9 @@ import java.awt.event.ActionListener;
 
 public class SetupAction implements ActionListener {
 
-    private final JTextField[] fields;
+    private final JTextField[] FIELDS;
 
-    public SetupAction(JTextField[] fields) {this.fields = fields; }
+    public SetupAction(JTextField[] fields) {this.FIELDS = fields; }
 
     Setup setup = new Setup();
 
@@ -25,39 +24,39 @@ public class SetupAction implements ActionListener {
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
-            for (int i = 0; i < fields.length; i++) {
-                fields[i].setText("");
+            for (int i = 0; i < FIELDS.length; i++) {
+                FIELDS[i].setText("");
             }
 
             for (int i = 0; i < oneDStarter.length; i++) {
                 if (oneDStarter[i] != 0)
-                    fields[i].setText("" + oneDStarter[i]);
+                    FIELDS[i].setText("" + oneDStarter[i]);
             }
         } else if (e.getSource() == SudokuGUI.medium) {
             setup.setDifficulty(Difficulty.MEDIUM);
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
-            for (int i = 0; i < fields.length; i++) {
-                fields[i].setText("");
+            for (int i = 0; i < FIELDS.length; i++) {
+                FIELDS[i].setText("");
             }
 
             for (int i = 0; i < oneDStarter.length; i++) {
                 if (oneDStarter[i] != 0)
-                    fields[i].setText("" + oneDStarter[i]);
+                    FIELDS[i].setText("" + oneDStarter[i]);
             }
         } else if (e.getSource() == SudokuGUI.hard) {
             setup.setDifficulty(Difficulty.MEDIUM);
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
-            for (int i = 0; i < fields.length; i++) {
-                fields[i].setText("");
+            for (int i = 0; i < FIELDS.length; i++) {
+                FIELDS[i].setText("");
             }
 
             for (int i = 0; i < oneDStarter.length; i++) {
                 if (oneDStarter[i] != 0)
-                    fields[i].setText("" + oneDStarter[i]);
+                    FIELDS[i].setText("" + oneDStarter[i]);
             }
         }
     }

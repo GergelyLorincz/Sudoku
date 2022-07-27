@@ -130,6 +130,7 @@ public class SudokuGUI extends JFrame{
         pack();
 
         SetupAction setupAction = new SetupAction(fields);
+
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
         hard.addActionListener(setupAction);
@@ -139,9 +140,9 @@ public class SudokuGUI extends JFrame{
     private JTextField[] emptyFields() {
         JTextField[] resultArray = new JTextField[81];
         for (int i = 0; i < 81; i++) {
-            JTextField field = new JTextField("");
-            field.setDocument(new JTextFieldLimit(1));
-            field.addKeyListener(new KeyAdapter() {
+            JTextField jField = new JTextField("");
+            jField.setDocument(new JTextFieldLimit(1));
+            jField.addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent e) {
                     char c = e.getKeyChar();
                     if ( ((c < '1') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
@@ -149,7 +150,7 @@ public class SudokuGUI extends JFrame{
                     }
                 }
             });
-            resultArray[i] = field;
+            resultArray[i] = jField;
         }
         return resultArray;
     }
