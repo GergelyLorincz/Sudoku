@@ -17,10 +17,11 @@ public class SetupAction implements ActionListener {
     Setup setup = new Setup();
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { //TODO generated nums non editable
 
         if (e.getSource() == SudokuGUI.easy) {
             setup.setDifficulty(Difficulty.EASY);
+            setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
@@ -34,6 +35,7 @@ public class SetupAction implements ActionListener {
             }
         } else if (e.getSource() == SudokuGUI.medium) {
             setup.setDifficulty(Difficulty.MEDIUM);
+            setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
@@ -47,6 +49,7 @@ public class SetupAction implements ActionListener {
             }
         } else if (e.getSource() == SudokuGUI.hard) {
             setup.setDifficulty(Difficulty.MEDIUM);
+            setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 

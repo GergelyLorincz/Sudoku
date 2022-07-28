@@ -132,15 +132,15 @@ public class SudokuGUI extends JFrame{
         pack();
 
         SetupAction setupAction = new SetupAction(fields);
-        ManualInputAction manualInputAction = new ManualInputAction(num, fields);
+
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
         hard.addActionListener(setupAction);
 
         for (int i = 0; i < fields.length; i++) {
+            ManualInputAction manualInputAction = new ManualInputAction(i, fields);
             fields[i].addKeyListener(manualInputAction);
-            num++;
         }
 
     }

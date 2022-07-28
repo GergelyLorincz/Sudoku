@@ -1,24 +1,23 @@
 package GUI;
 
 import service.Checker;
+import service.Setup;
 import util.MyUtil;
 
 import javax.swing.*;
-import util.MyUtil;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class ManualInputAction implements KeyListener {
 
-    private int arrayIndex;
-    private final JTextField[] fields;
+    private final int ARRAYINDEX;
+    private final JTextField[] FIELDS;
 
     ManualInputAction(int arrayIndex, JTextField[] fields) {
-        this.arrayIndex = arrayIndex;
-        this.fields = fields;
+        this.ARRAYINDEX = arrayIndex;
+        this.FIELDS = fields;
     }
 
     private int[] getCoordinates() {
@@ -26,11 +25,11 @@ public class ManualInputAction implements KeyListener {
         int row;
         int column;
 
-        row = arrayIndex / 9;
+        row = ARRAYINDEX / 9;
 
-        if (arrayIndex < 9) {
+        if (ARRAYINDEX < 9) {
             column = 0;
-        } else {column = arrayIndex % 9 - 1; }
+        } else {column = ARRAYINDEX % 9 - 1; }
 
         resultArray[0] = row;
         resultArray[1] = column;
@@ -42,7 +41,7 @@ public class ManualInputAction implements KeyListener {
 
         for (int i = 0; i < jArray.length; i++) {
             String text = jArray[i].getText();
-            resultArray[i] = Integer.parseInt(text);
+            resultArray[i] = text.isBlank() ? 0 : Integer.parseInt(text);
         }
 
         return resultArray;
@@ -54,32 +53,26 @@ public class ManualInputAction implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        char c = e.getKeyChar();
-        String text = String.valueOf(c);
-        int num = Integer.parseInt(text);
-        int[] coordinates = getCoordinates();
-        int[] array = convertStringToInt(fields);
-        int[][] matrix = MyUtil.oneDtoTwoD(array);
+        if (e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            char c = e.getKeyChar();
+            String text = String.valueOf(c);
+            int num = Integer.parseInt(text);
+            int[] coordinates = getCoordinates();
+            int[] array = convertStringToInt(FIELDS);
+            int[][] matrix = Setup.sudokuTable;
+            MyUtil.print(matrix);
 
-        if (Checker.isValidPlacement(matrix,num,coordinates[0],coordinates[1])) {
-            fields[arrayIndex].setForeground(Color.BLUE);
-        } else {
-            fields[arrayIndex].setForeground(Color.RED);
+            if (Checker.isValidPlacement(matrix,num,coordinates[0],coordinates[1])) {
+                FIELDS[ARRAYINDEX].setForeground(Color.BLUE);
+            } else {
+                FIELDS[ARRAYINDEX].setForeground(Color.RED);
+            }
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        /*int num = e.getKeyChar();
-        int[] coordinates = getCoordinates();
-        int[] array = convertStringToInt(fields);
-        int[][] matrix = MyUtil.oneDtoTwoD(array);
 
-        if (Checker.isValidPlacement(matrix,num,coordinates[0],coordinates[1])) {
-            fields[arrayIndex].setForeground(Color.BLUE);
-        } else {
-            fields[arrayIndex].setForeground(Color.RED);
-        }*/
     }
 
     @Override

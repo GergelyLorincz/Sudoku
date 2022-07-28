@@ -35,7 +35,9 @@ public class MyUtil {
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
-                resultMatrix[i][j] = array[i];
+                for (int k = 0; k < resultMatrix.length; k++) {
+                    resultMatrix[j][k] = array[i];
+                }
             }
         }
         return resultMatrix;
