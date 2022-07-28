@@ -11,6 +11,7 @@ import static javax.swing.GroupLayout.Alignment.*;
 public class SudokuGUI extends JFrame{
 
     public static JMenuItem easy, medium, hard;
+    int num = 0;
 
     public SudokuGUI() {
 
@@ -26,6 +27,7 @@ public class SudokuGUI extends JFrame{
         for (int i = 0; i < fields.length; i++) {
             grid.add(fields[i]);
         }
+
         JMenuBar menuBar = new JMenuBar();
         JMenu newGame = new JMenu("New game");
         easy = new JMenuItem("Easy");
@@ -130,10 +132,16 @@ public class SudokuGUI extends JFrame{
         pack();
 
         SetupAction setupAction = new SetupAction(fields);
+        ManualInputAction manualInputAction = new ManualInputAction(num, fields);
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
         hard.addActionListener(setupAction);
+
+        for (int i = 0; i < fields.length; i++) {
+            fields[i].addKeyListener(manualInputAction);
+            num++;
+        }
 
     }
 

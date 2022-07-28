@@ -9,8 +9,9 @@ import util.MyUtil;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class ManualInputAction {
+public class ManualInputAction implements KeyListener {
 
     private int arrayIndex;
     private final JTextField[] fields;
@@ -47,8 +48,15 @@ public class ManualInputAction {
         return resultArray;
     }
 
-    public void actionPerformed(KeyEvent e) {
-        int num = e.getKeyChar();
+    /*public void actionPerformed(KeyEvent e) {
+
+    }*/
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        String text = String.valueOf(c);
+        int num = Integer.parseInt(text);
         int[] coordinates = getCoordinates();
         int[] array = convertStringToInt(fields);
         int[][] matrix = MyUtil.oneDtoTwoD(array);
@@ -58,5 +66,24 @@ public class ManualInputAction {
         } else {
             fields[arrayIndex].setForeground(Color.RED);
         }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        /*int num = e.getKeyChar();
+        int[] coordinates = getCoordinates();
+        int[] array = convertStringToInt(fields);
+        int[][] matrix = MyUtil.oneDtoTwoD(array);
+
+        if (Checker.isValidPlacement(matrix,num,coordinates[0],coordinates[1])) {
+            fields[arrayIndex].setForeground(Color.BLUE);
+        } else {
+            fields[arrayIndex].setForeground(Color.RED);
+        }*/
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
