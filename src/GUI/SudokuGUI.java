@@ -11,7 +11,10 @@ import static javax.swing.GroupLayout.Alignment.*;
 public class SudokuGUI extends JFrame{
 
     public static JMenuItem easy, medium, hard;
+    public static JButton one, two, three, four, five, six, seven, eight, nine;
+    public static JButton erase, hint, restart;
     int num = 0;
+    int gainedFocusIndex;
 
     public SudokuGUI() {
 
@@ -39,21 +42,21 @@ public class SudokuGUI extends JFrame{
         newGame.add(hard);
         setJMenuBar(menuBar);
 
-        JButton erase = new JButton("Erase");
-        JButton hint = new JButton("Hint");
-        JButton restart = new JButton("Restart");
+        erase = new JButton("Erase");
+        hint = new JButton("Hint");
+        restart = new JButton("Restart");
 
         newGame.setMinimumSize(new Dimension(225,30));
 
-        JButton one = new JButton("1");
-        JButton two = new JButton("2");
-        JButton three = new JButton("3");
-        JButton four = new JButton("4");
-        JButton five = new JButton("5");
-        JButton six = new JButton("6");
-        JButton seven = new JButton("7");
-        JButton eight = new JButton("8");
-        JButton nine = new JButton("9");
+        one = new JButton("1");
+        two = new JButton("2");
+        three = new JButton("3");
+        four = new JButton("4");
+        five = new JButton("5");
+        six = new JButton("6");
+        seven = new JButton("7");
+        eight = new JButton("8");
+        nine = new JButton("9");
 
         one.setMinimumSize(new Dimension(60,60));
         two.setMinimumSize(new Dimension(60,60));
@@ -132,15 +135,31 @@ public class SudokuGUI extends JFrame{
         pack();
 
         SetupAction setupAction = new SetupAction(fields);
-
+        FocusGainedAction focusGainedAction = new FocusGainedAction(fields, gainedFocusIndex);
+        NumPadAction numPadAction = new NumPadAction(fields, gainedFocusIndex);
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
         hard.addActionListener(setupAction);
 
+        one.addActionListener(numPadAction);
+        two.addActionListener(numPadAction);
+        three.addActionListener(numPadAction);
+        four.addActionListener(numPadAction);
+        five.addActionListener(numPadAction);
+        six.addActionListener(numPadAction);
+        seven.addActionListener(numPadAction);
+        eight.addActionListener(numPadAction);
+        nine.addActionListener(numPadAction);
+
+
         for (int i = 0; i < fields.length; i++) {
             ManualInputAction manualInputAction = new ManualInputAction(i, fields);
             fields[i].addKeyListener(manualInputAction);
+        }
+
+        for (int i = 0; i < fields.length; i++) {
+            fields[i].addFocusListener(focusGainedAction);
         }
 
     }
