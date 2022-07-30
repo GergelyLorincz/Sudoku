@@ -43,4 +43,8 @@ public class Checker {
                 !isNumberInColumn(sudokuBoard, number, column) &&
                 !isNumberInBox(sudokuBoard, number, row, column);
     }
+
+    public static boolean checker(int[][] matrix, int number, int row, int column) {
+        return matrix[row][column] == number;
+    }
 }

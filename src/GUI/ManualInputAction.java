@@ -25,11 +25,15 @@ public class ManualInputAction implements KeyListener {
         int row;
         int column;
 
-        row = ARRAYINDEX / 9;
+        if (ARRAYINDEX < 9) {
+            row = 0;
+        } else {
+            row = ARRAYINDEX / 9;
+        }
 
         if (ARRAYINDEX < 9) {
             column = 0;
-        } else {column = ARRAYINDEX % 9 - 1; }
+        } else {column = ARRAYINDEX % 9; }
 
         resultArray[0] = row;
         resultArray[1] = column;
@@ -62,7 +66,7 @@ public class ManualInputAction implements KeyListener {
             int[][] matrix = Setup.sudokuTable;
             MyUtil.print(matrix);
 
-            if (Checker.isValidPlacement(matrix,num,coordinates[0],coordinates[1])) {
+            if (Checker.checker(matrix,num,coordinates[0],coordinates[1])) {
                 FIELDS[ARRAYINDEX].setForeground(Color.BLUE);
             } else {
                 FIELDS[ARRAYINDEX].setForeground(Color.RED);
