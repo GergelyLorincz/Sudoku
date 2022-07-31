@@ -136,10 +136,15 @@ public class SudokuGUI extends JFrame{
         SetupAction setupAction = new SetupAction(fields);
         FocusGainedAction focusGainedAction = new FocusGainedAction(fields);
         NumPadAction numPadAction = new NumPadAction(fields);
+        EraseButtonAction eraseButtonAction = new EraseButtonAction(fields);
+        HintButtonAction hintButtonAction = new HintButtonAction(fields);
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
         hard.addActionListener(setupAction);
+
+        erase.addActionListener(eraseButtonAction);
+        hint.addActionListener(hintButtonAction);
 
         one.addActionListener(numPadAction);
         two.addActionListener(numPadAction);

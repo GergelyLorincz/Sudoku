@@ -13,9 +13,7 @@ public class NumPadAction implements ActionListener {
 
     private final JTextField[] FIELDS;
 
-    public NumPadAction(JTextField[] fields) {
-        this.FIELDS = fields;
-    }
+    public NumPadAction(JTextField[] fields) {this.FIELDS = fields; }
 
     @Override
     public void actionPerformed(ActionEvent e) {
