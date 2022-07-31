@@ -17,6 +17,15 @@ public class MyUtil {
         return random.nextInt(max - min + 1) + min;
     }
 
+    public static int getMaxOrMin(int min, int max) {
+        Random random = new Random();
+        if(random.nextBoolean()) {
+            return max;
+        } else {
+            return min;
+        }
+    }
+
     public static int[] twoDToOneD(int[][] matrix) {
         int[] resultArray = new int[matrix.length * matrix[0].length];
 

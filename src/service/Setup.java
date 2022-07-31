@@ -32,7 +32,7 @@ public class Setup {
         return resultArray;
     }
 
-    public static int[][] sudokuStarter(int[][] sudokuTable, int max, int min) { //TODO rework
+    public static int[][] sudokuStarter(int[][] sudokuTable, int max, int min) {
         int[][] result = new int[9][9];
         for (int i = 0; i < sudokuTable.length; i++) {
             for (int j = 0; j < sudokuTable.length; j++) {
@@ -41,14 +41,10 @@ public class Setup {
         }
 
         for (int i = 0; i < result.length; i++) {
-            int replacedNums = MyUtil.getRandomInt(max, min);
+            int replacedNums = MyUtil.getMaxOrMin(max, min);
             int[] replacedIndexes = getRandomArray(replacedNums);
-            for (int j = 0; j < result[i].length; j++) {
-                for (int k = 0; k < replacedIndexes.length; k++) {
-                    if (j == replacedIndexes[k]) {
-                        result[i][j] = 0;
-                    }
-                }
+            for (int j = 0; j < replacedIndexes.length; j++) {
+                result[i][replacedIndexes[j] - 1] = 0;
             }
         }
         return result;

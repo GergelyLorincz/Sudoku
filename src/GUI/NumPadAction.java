@@ -1,39 +1,56 @@
 package GUI;
 
+import service.Checker;
+import service.Setup;
+import util.MyUtil;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NumPadAction implements ActionListener {
 
     private final JTextField[] FIELDS;
-    private int index;
 
-    public NumPadAction(JTextField[] fields, int index) {
+    public NumPadAction(JTextField[] fields) {
         this.FIELDS = fields;
-        this.index = index;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        int index = FocusGainedAction.index;
+        int number = 0;
         if (e.getSource() == SudokuGUI.one) {
-            FIELDS[index].setText("" + 1);
+            number = 1;
         } else if (e.getSource() == SudokuGUI.two) {
-            FIELDS[index].setText("" + 2);
+            number = 2;
         } else if (e.getSource() == SudokuGUI.three) {
-            FIELDS[index].setText("" + 3);
+            number = 3;
         } else if (e.getSource() == SudokuGUI.four) {
-            FIELDS[index].setText("" + 4);
+            number = 4;
         } else if (e.getSource() == SudokuGUI.five) {
-            FIELDS[index].setText("" + 5);
+            number = 5;
         } else if (e.getSource() == SudokuGUI.six) {
-            FIELDS[index].setText("" + 6);
+            number = 6;
         } else if (e.getSource() == SudokuGUI.seven) {
-            FIELDS[index].setText("" + 7);
+            number = 7;
         } else if (e.getSource() == SudokuGUI.eight) {
-            FIELDS[index].setText("" + 8);
+            number = 8;
         } else if (e.getSource() == SudokuGUI.nine) {
-            FIELDS[index].setText("" + 9);
+            number = 9;
+        }
+        FIELDS[index].setText("" + number);
+
+        int[] coordinates = ManualInputAction.getCoordinates(index);
+        int[] array = ManualInputAction.convertStringToInt(FIELDS);
+        int[][] matrix = Setup.sudokuTable;
+        MyUtil.print(matrix);
+
+        if (Checker.checker(matrix,number,coordinates[0],coordinates[1])) {
+            FIELDS[index].setForeground(Color.BLUE);
+        } else {
+            FIELDS[index].setForeground(Color.RED);
         }
     }
 }

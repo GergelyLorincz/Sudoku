@@ -14,7 +14,6 @@ public class SudokuGUI extends JFrame{
     public static JButton one, two, three, four, five, six, seven, eight, nine;
     public static JButton erase, hint, restart;
     int num = 0;
-    int gainedFocusIndex;
 
     public SudokuGUI() {
 
@@ -135,8 +134,8 @@ public class SudokuGUI extends JFrame{
         pack();
 
         SetupAction setupAction = new SetupAction(fields);
-        FocusGainedAction focusGainedAction = new FocusGainedAction(fields, gainedFocusIndex);
-        NumPadAction numPadAction = new NumPadAction(fields, gainedFocusIndex);
+        FocusGainedAction focusGainedAction = new FocusGainedAction(fields);
+        NumPadAction numPadAction = new NumPadAction(fields);
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
@@ -158,9 +157,9 @@ public class SudokuGUI extends JFrame{
             fields[i].addKeyListener(manualInputAction);
         }
 
-        for (int i = 0; i < fields.length; i++) {
+       for (int i = 0; i < fields.length; i++) {
             fields[i].addFocusListener(focusGainedAction);
-        }
+       }
 
     }
 

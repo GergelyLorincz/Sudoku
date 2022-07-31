@@ -20,27 +20,27 @@ public class ManualInputAction implements KeyListener {
         this.FIELDS = fields;
     }
 
-    private int[] getCoordinates() {
+    public static int[] getCoordinates(int arrayIndex) {
         int[] resultArray = new int[2];
         int row;
         int column;
 
-        if (ARRAYINDEX < 9) {
+        if (arrayIndex < 9) {
             row = 0;
         } else {
-            row = ARRAYINDEX / 9;
+            row = arrayIndex / 9;
         }
 
-        if (ARRAYINDEX < 9) {
-            column = 0;
-        } else {column = ARRAYINDEX % 9; }
+        if (arrayIndex < 9) {
+            column = arrayIndex;
+        } else {column = arrayIndex % 9; }
 
         resultArray[0] = row;
         resultArray[1] = column;
         return resultArray;
     }
 
-    private int[] convertStringToInt(JTextField[] jArray) {
+    public static int[] convertStringToInt(JTextField[] jArray) {
         int[] resultArray = new int[81];
 
         for (int i = 0; i < jArray.length; i++) {
@@ -61,7 +61,7 @@ public class ManualInputAction implements KeyListener {
             char c = e.getKeyChar();
             String text = String.valueOf(c);
             int num = Integer.parseInt(text);
-            int[] coordinates = getCoordinates();
+            int[] coordinates = getCoordinates(ARRAYINDEX);
             int[] array = convertStringToInt(FIELDS);
             int[][] matrix = Setup.sudokuTable;
             MyUtil.print(matrix);

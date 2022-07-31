@@ -7,24 +7,24 @@ import java.awt.event.FocusListener;
 public class FocusGainedAction implements FocusListener {
 
     private final JTextField[] FIELDS;
-    private int index;
+    public static int index;
 
-    public FocusGainedAction(JTextField[] FIELDS, int index) {
+    public FocusGainedAction(JTextField[] FIELDS) {
         this.FIELDS = FIELDS;
-        this.index = index;
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-
+        for (int i = 0; i < FIELDS.length; i++) {
+            if (FIELDS[i].isFocusOwner()) {
+                index = i;
+                break;
+            }
+        }
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-        for (int i = 0; i < FIELDS.length; i++) {
-            if (FIELDS[i].isFocusOwner()) {
-                i = index;
-            }
-        }
+
     }
 }

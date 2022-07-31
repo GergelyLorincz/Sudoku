@@ -5,6 +5,7 @@ import service.Setup;
 import util.MyUtil;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,6 +28,7 @@ public class SetupAction implements ActionListener {
 
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
+                FIELDS[i].setForeground(Color.BLACK);
             }
 
             for (int i = 0; i < oneDStarter.length; i++) {
@@ -41,6 +43,7 @@ public class SetupAction implements ActionListener {
 
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
+                FIELDS[i].setForeground(Color.BLACK);
             }
 
             for (int i = 0; i < oneDStarter.length; i++) {
@@ -55,6 +58,7 @@ public class SetupAction implements ActionListener {
 
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
+                FIELDS[i].setForeground(Color.BLACK);
             }
 
             for (int i = 0; i < oneDStarter.length; i++) {
