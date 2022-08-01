@@ -138,6 +138,7 @@ public class SudokuGUI extends JFrame{
         NumPadAction numPadAction = new NumPadAction(fields);
         EraseButtonAction eraseButtonAction = new EraseButtonAction(fields);
         HintButtonAction hintButtonAction = new HintButtonAction(fields);
+        RestartButtonAction restartButtonAction = new RestartButtonAction(fields);
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
@@ -145,6 +146,7 @@ public class SudokuGUI extends JFrame{
 
         erase.addActionListener(eraseButtonAction);
         hint.addActionListener(hintButtonAction);
+        restart.addActionListener(restartButtonAction);
 
         one.addActionListener(numPadAction);
         two.addActionListener(numPadAction);

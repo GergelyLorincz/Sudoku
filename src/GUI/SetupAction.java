@@ -15,6 +15,8 @@ public class SetupAction implements ActionListener {
 
     public SetupAction(JTextField[] fields) {this.FIELDS = fields; }
 
+    public static int[] copy = new int[81];
+
     Setup setup = new Setup();
 
     @Override
@@ -26,6 +28,10 @@ public class SetupAction implements ActionListener {
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
+            for (int i = 0; i < oneDStarter.length; i++) {
+                copy[i] = oneDStarter[i];
+            }
+
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
                 FIELDS[i].setForeground(Color.BLACK);
@@ -35,12 +41,17 @@ public class SetupAction implements ActionListener {
                 if (oneDStarter[i] != 0)
                     FIELDS[i].setText("" + oneDStarter[i]);
             }
+
         } else if (e.getSource() == SudokuGUI.medium) {
             setup.setDifficulty(Difficulty.MEDIUM);
             setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
 
+            for (int i = 0; i < oneDStarter.length; i++) {
+                copy[i] = oneDStarter[i];
+            }
+
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
                 FIELDS[i].setForeground(Color.BLACK);
@@ -50,11 +61,16 @@ public class SetupAction implements ActionListener {
                 if (oneDStarter[i] != 0)
                     FIELDS[i].setText("" + oneDStarter[i]);
             }
+
         } else if (e.getSource() == SudokuGUI.hard) {
             setup.setDifficulty(Difficulty.MEDIUM);
             setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             int[] oneDStarter = MyUtil.twoDToOneD(starterMatrix);
+
+            for (int i = 0; i < oneDStarter.length; i++) {
+                copy[i] = oneDStarter[i];
+            }
 
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
