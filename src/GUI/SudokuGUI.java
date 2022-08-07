@@ -12,7 +12,7 @@ public class SudokuGUI extends JFrame{
 
     public static JMenuItem easy, medium, hard;
     public static JButton one, two, three, four, five, six, seven, eight, nine;
-    public static JButton erase, hint, restart;
+    public static JButton undo, hint, restart;
     public static boolean checkBox = false;
     public static JCheckBox autoCheckBox;
     int num = 0;
@@ -28,8 +28,14 @@ public class SudokuGUI extends JFrame{
         grid.setPreferredSize(new Dimension(350,350));
 
         JTextField[] fields = emptyFields();
+
+
         for (int i = 0; i < fields.length; i++) {
             grid.add(fields[i]);
+            int[] coordinates = ManualInputAction.getCoordinates(i);
+            if ((coordinates[0] + coordinates[1]) % 3 == 0) {
+                fields[i].setBackground(Color.PINK);
+            } else {fields[i].setBackground(Color.WHITE);}
         }
 
         JMenuBar menuBar = new JMenuBar();
@@ -43,7 +49,7 @@ public class SudokuGUI extends JFrame{
         newGame.add(hard);
         setJMenuBar(menuBar);
 
-        erase = new JButton("Erase");
+        undo = new JButton("Undo");
         hint = new JButton("Hint");
         restart = new JButton("Restart");
         autoCheckBox = new JCheckBox("Auto-check", false);
@@ -70,7 +76,7 @@ public class SudokuGUI extends JFrame{
         eight.setMinimumSize(new Dimension(60,60));
         nine.setMinimumSize(new Dimension(60,60));
 
-        erase.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
+        undo.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
         hint.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
         restart.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
         one.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
@@ -95,7 +101,7 @@ public class SudokuGUI extends JFrame{
                         .addComponent(grid)
                         .addGroup(layout.createParallelGroup(CENTER)
                                 .addGroup(layout.createSequentialGroup()
-                                        .addComponent(erase)
+                                        .addComponent(undo)
                                         .addComponent(hint)
                                         .addComponent(restart))
                                 .addGroup(layout.createSequentialGroup()
@@ -118,7 +124,7 @@ public class SudokuGUI extends JFrame{
                         .addComponent(grid)
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(CENTER)
-                                        .addComponent(erase)
+                                        .addComponent(undo)
                                         .addComponent(hint)
                                         .addComponent(restart))
                                 .addGroup(layout.createSequentialGroup()
@@ -141,7 +147,7 @@ public class SudokuGUI extends JFrame{
         SetupAction setupAction = new SetupAction(fields);
         FocusGainedAction focusGainedAction = new FocusGainedAction(fields);
         NumPadAction numPadAction = new NumPadAction(fields);
-        EraseButtonAction eraseButtonAction = new EraseButtonAction(fields);
+        UndoButtonAction undoButtonAction = new UndoButtonAction(fields);
         HintButtonAction hintButtonAction = new HintButtonAction(fields);
         RestartButtonAction restartButtonAction = new RestartButtonAction(fields);
         AutoCheck autoCheck = new AutoCheck(fields);
@@ -150,7 +156,7 @@ public class SudokuGUI extends JFrame{
         medium.addActionListener(setupAction);
         hard.addActionListener(setupAction);
 
-        erase.addActionListener(eraseButtonAction);
+        undo.addActionListener(undoButtonAction);
         hint.addActionListener(hintButtonAction);
         restart.addActionListener(restartButtonAction);
 
@@ -174,7 +180,6 @@ public class SudokuGUI extends JFrame{
        for (int i = 0; i < fields.length; i++) {
             fields[i].addFocusListener(focusGainedAction);
        }
-
     }
 
     private JTextField[] emptyFields() {
@@ -185,7 +190,7 @@ public class SudokuGUI extends JFrame{
             jField.addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent e) {
                     char c = e.getKeyChar();
-                    if ( ((c < '1') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                    if (((c < '1') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
                         e.consume();
                     }
                 }
@@ -194,10 +199,4 @@ public class SudokuGUI extends JFrame{
         }
         return resultArray;
     }
-
-    public JMenuItem getEasy() {return easy; }
-
-    public JMenuItem getMedium() {return medium; }
-
-    public JMenuItem getHard() {return hard; }
 }

@@ -13,7 +13,7 @@ public class HintButtonAction implements ActionListener {
 
     public HintButtonAction(JTextField[] fields) {this.FIELDS = fields; }
 
-    private int getNumberOfEmptyFields() { //TODO not every action gives a number
+    private int getNumberOfEmptyFields() {
         int counter = 0;
 
         for (int i = 0; i < FIELDS.length; i++) {
@@ -27,11 +27,19 @@ public class HintButtonAction implements ActionListener {
 
     private int getRandomField() {
         int numberOfEmptyFields = getNumberOfEmptyFields();
+        if (numberOfEmptyFields == 0) {
+            return -1;
+        }
         return MyUtil.getRandomInt(numberOfEmptyFields, 1);
     }
 
     private int getIndexOfMatrix() {
         int randomField = getRandomField();
+
+        if(randomField == -1) {
+            return -1;
+        }
+
         int indexCounter = 0;
         int counter = 0;
 
@@ -42,6 +50,7 @@ public class HintButtonAction implements ActionListener {
             }
             if (counter == randomField) {
                 indexCounter = i;
+                break;
             }
         }
         return indexCounter;
@@ -50,8 +59,11 @@ public class HintButtonAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int indexOfHint = getIndexOfMatrix();
-        int[] coordinates = ManualInputAction.getCoordinates(indexOfHint);
-        int[][] matrix = Setup.sudokuTable;
-        FIELDS[indexOfHint].setText("" + matrix[coordinates[0]][coordinates[1]]); ;
+
+        if (indexOfHint != -1) {
+            int[] coordinates = ManualInputAction.getCoordinates(indexOfHint);
+            int[][] matrix = Setup.sudokuTable;
+            FIELDS[indexOfHint].setText("" + matrix[coordinates[0]][coordinates[1]]);
+        }
     }
 }

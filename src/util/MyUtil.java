@@ -1,5 +1,7 @@
 package util;
 
+import GUI.ManualInputAction;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -43,13 +45,10 @@ public class MyUtil {
         int[][] resultMatrix = new int[9][9];
 
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < resultMatrix.length; j++) {
-                for (int k = 0; k < resultMatrix.length; k++) {
-                    resultMatrix[j][k] = array[i];
-                }
-            }
+            int[] coordinates = ManualInputAction.getCoordinates(i);
+            resultMatrix[coordinates[0]][coordinates[1]] = array[i];
+
         }
         return resultMatrix;
     }
-
 }

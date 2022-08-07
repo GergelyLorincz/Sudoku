@@ -39,6 +39,7 @@ public class NumPadAction implements ActionListener {
             number = 9;
         }
         FIELDS[index].setText("" + number);
+        UndoButtonAction.indexes.add(index);
 
         int[] coordinates = ManualInputAction.getCoordinates(index);
         int[] array = ManualInputAction.convertStringToInt(FIELDS);
