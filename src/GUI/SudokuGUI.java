@@ -13,6 +13,8 @@ public class SudokuGUI extends JFrame{
     public static JMenuItem easy, medium, hard;
     public static JButton one, two, three, four, five, six, seven, eight, nine;
     public static JButton erase, hint, restart;
+    public static boolean checkBox = false;
+    public static JCheckBox autoCheckBox;
     int num = 0;
 
     public SudokuGUI() {
@@ -44,6 +46,7 @@ public class SudokuGUI extends JFrame{
         erase = new JButton("Erase");
         hint = new JButton("Hint");
         restart = new JButton("Restart");
+        autoCheckBox = new JCheckBox("Auto-check", false);
 
         newGame.setMinimumSize(new Dimension(225,30));
 
@@ -107,7 +110,8 @@ public class SudokuGUI extends JFrame{
                                         .addGroup(layout.createParallelGroup()
                                                 .addComponent(three)
                                                 .addComponent(six)
-                                                .addComponent(nine)))));
+                                                .addComponent(nine)))
+                                .addComponent(autoCheckBox)));
 
         layout.setVerticalGroup(
                 layout.createParallelGroup(CENTER)
@@ -129,7 +133,8 @@ public class SudokuGUI extends JFrame{
                                         .addGroup(layout.createParallelGroup()
                                                 .addComponent(seven)
                                                 .addComponent(eight)
-                                                .addComponent(nine)))));
+                                                .addComponent(nine)))
+                                .addComponent(autoCheckBox)));
 
         pack();
 
@@ -139,6 +144,7 @@ public class SudokuGUI extends JFrame{
         EraseButtonAction eraseButtonAction = new EraseButtonAction(fields);
         HintButtonAction hintButtonAction = new HintButtonAction(fields);
         RestartButtonAction restartButtonAction = new RestartButtonAction(fields);
+        AutoCheck autoCheck = new AutoCheck(fields);
 
         easy.addActionListener(setupAction);
         medium.addActionListener(setupAction);
@@ -158,6 +164,7 @@ public class SudokuGUI extends JFrame{
         eight.addActionListener(numPadAction);
         nine.addActionListener(numPadAction);
 
+        autoCheckBox.addItemListener(autoCheck);
 
         for (int i = 0; i < fields.length; i++) {
             ManualInputAction manualInputAction = new ManualInputAction(i, fields);

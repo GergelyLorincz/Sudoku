@@ -45,10 +45,12 @@ public class NumPadAction implements ActionListener {
         int[][] matrix = Setup.sudokuTable;
         MyUtil.print(matrix);
 
-        if (Checker.checker(matrix,number,coordinates[0],coordinates[1])) {
-            FIELDS[index].setForeground(Color.BLUE);
-        } else {
-            FIELDS[index].setForeground(Color.RED);
+        if (SudokuGUI.checkBox) {
+            if (Checker.checker(matrix, number, coordinates[0], coordinates[1])) {
+                FIELDS[index].setForeground(Color.BLUE);
+            } else {
+                FIELDS[index].setForeground(Color.RED);
+            }
         }
     }
 }

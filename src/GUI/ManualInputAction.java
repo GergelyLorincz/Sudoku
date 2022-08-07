@@ -60,16 +60,18 @@ public class ManualInputAction implements KeyListener {
         if (e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             char c = e.getKeyChar();
             String text = String.valueOf(c);
-            int num = Integer.parseInt(text);
+            int num = Integer.parseInt(text); //TODO at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
             int[] coordinates = getCoordinates(ARRAYINDEX);
             int[] array = convertStringToInt(FIELDS);
             int[][] matrix = Setup.sudokuTable;
             MyUtil.print(matrix);
 
-            if (Checker.checker(matrix,num,coordinates[0],coordinates[1])) {
-                FIELDS[ARRAYINDEX].setForeground(Color.BLUE);
-            } else {
-                FIELDS[ARRAYINDEX].setForeground(Color.RED);
+            if (SudokuGUI.checkBox) {
+                if (Checker.checker(matrix, num, coordinates[0], coordinates[1])) {
+                    FIELDS[ARRAYINDEX].setForeground(Color.BLUE);
+                } else {
+                    FIELDS[ARRAYINDEX].setForeground(Color.RED);
+                }
             }
         }
     }

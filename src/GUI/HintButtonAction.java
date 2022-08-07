@@ -13,7 +13,7 @@ public class HintButtonAction implements ActionListener {
 
     public HintButtonAction(JTextField[] fields) {this.FIELDS = fields; }
 
-    private int getNumberOfEmptyFields() {
+    private int getNumberOfEmptyFields() { //TODO not every action gives a number
         int counter = 0;
 
         for (int i = 0; i < FIELDS.length; i++) {
