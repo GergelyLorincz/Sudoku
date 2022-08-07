@@ -32,10 +32,7 @@ public class SudokuGUI extends JFrame{
 
         for (int i = 0; i < fields.length; i++) {
             grid.add(fields[i]);
-            int[] coordinates = ManualInputAction.getCoordinates(i);
-            if ((coordinates[0] + coordinates[1]) % 3 == 0) {
-                fields[i].setBackground(Color.PINK);
-            } else {fields[i].setBackground(Color.WHITE);}
+            TableBackground.color(fields,i);
         }
 
         JMenuBar menuBar = new JMenuBar();
