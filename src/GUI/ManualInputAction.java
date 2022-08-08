@@ -63,7 +63,6 @@ public class ManualInputAction implements KeyListener {
             int num = Integer.parseInt(text);
             int[] coordinates = getCoordinates(ARRAYINDEX);
             int[][] matrix = Setup.sudokuTable;
-            MyUtil.print(matrix);
             UndoButtonAction.indexes.add(ARRAYINDEX);
 
             if (SudokuGUI.checkBox) {

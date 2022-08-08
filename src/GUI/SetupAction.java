@@ -28,12 +28,12 @@ public class SetupAction implements ActionListener {
             setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             copy = MyUtil.twoDToOneD(starterMatrix);
-            System.out.println(Arrays.toString(copy));
 
             for (int i = 0; i < FIELDS.length; i++) {
                 FIELDS[i].setText("");
                 FIELDS[i].setForeground(Color.BLACK);
                 FIELDS[i].setEditable(true);
+                TableBackground.color(FIELDS,i);
             }
 
             for (int i = 0; i < copy.length; i++) {

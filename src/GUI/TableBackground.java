@@ -36,8 +36,8 @@ public class TableBackground {
         for(int i = 0; i < matrix.length; i++) {
             boolean[] row = matrix[i];
             for(int j = 0; j < row.length; j++) {
-                boolean number = matrix[i][j];
-                board[i * row.length + j] = number;
+                boolean value = matrix[i][j];
+                board[i * row.length + j] = value;
             }
         }
     }
@@ -46,9 +46,9 @@ public class TableBackground {
         twoDToOneD(boardMatrix);
 
             if (board[index]) {
-                jTextFields[index].setBackground(Color.WHITE);
+                jTextFields[index].setBackground(Color.LIGHT_GRAY);
             } else {
-                jTextFields[index].setBackground(Color.GRAY);
+                jTextFields[index].setBackground(Color.WHITE);
             }
         }
 

@@ -44,7 +44,6 @@ public class NumPadAction implements ActionListener {
         int[] coordinates = ManualInputAction.getCoordinates(index);
         int[] array = ManualInputAction.convertStringToInt(FIELDS);
         int[][] matrix = Setup.sudokuTable;
-        MyUtil.print(matrix);
 
         if (SudokuGUI.checkBox) {
             if (Checker.checker(matrix, number, coordinates[0], coordinates[1])) {
