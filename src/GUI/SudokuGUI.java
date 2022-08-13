@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -37,6 +38,9 @@ public class SudokuGUI extends JFrame{
             TableBackground.color(fields,i);
         }
 
+        ImageIcon img = new ImageIcon("src/resource/icon.png");
+        setIconImage(img.getImage());
+
         JMenuBar menuBar = new JMenuBar();
         JMenu newGame = new JMenu("New game");
         easy = new JMenuItem("Easy");
@@ -55,6 +59,9 @@ public class SudokuGUI extends JFrame{
         win = new JLabel("");
         win2 = new JLabel("");
 
+        autoCheckBox.setFont(new Font("MonoLisa",Font.BOLD,15));
+        win.setFont(new Font("MonoLisa",Font.BOLD,15));
+        win2.setFont(new Font("MonoLisa",Font.BOLD,15));
         newGame.setMinimumSize(new Dimension(225,30));
 
         one = new JButton("1");
@@ -77,18 +84,18 @@ public class SudokuGUI extends JFrame{
         eight.setMinimumSize(new Dimension(60,60));
         nine.setMinimumSize(new Dimension(60,60));
 
-        undo.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-        hint.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-        restart.setFont(new Font("Berlin Sans FB", Font.PLAIN, 15));
-        one.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        two.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        three.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        four.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        five.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        six.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        seven.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        eight.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
-        nine.setFont(new Font("Berlin Sans FB", Font.PLAIN, 40));
+        undo.setFont(new Font("MonoLisa", Font.BOLD, 15));
+        hint.setFont(new Font("MonoLisa", Font.BOLD, 15));
+        restart.setFont(new Font("MonoLisa", Font.BOLD, 15));
+        one.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        two.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        three.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        four.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        five.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        six.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        seven.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        eight.setFont(new Font("MonoLisa", Font.BOLD, 35));
+        nine.setFont(new Font("MonoLisa", Font.BOLD, 35));
 
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -197,6 +204,9 @@ public class SudokuGUI extends JFrame{
         JTextField[] resultArray = new JTextField[81];
         for (int i = 0; i < 81; i++) {
             JTextField jField = new JTextField("");
+            jField.setHorizontalAlignment(JTextField.CENTER);
+            jField.setBorder(new LineBorder(Color.GRAY,1));
+            jField.setFont(new Font("MonoLisa",Font.BOLD,17));
             jField.setDocument(new JTextFieldLimit(1));
             jField.addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent e) {

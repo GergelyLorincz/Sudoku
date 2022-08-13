@@ -60,7 +60,7 @@ public class ManualInputAction implements KeyListener {
     public void keyTyped(KeyEvent e) {
         int index = FocusGainedAction.index;
         char c = e.getKeyChar();
-        if ( ((c >= '1') && (c <= '9'))) {
+        if ( ((c >= '1') && (c <= '9')) ) {
             String text = String.valueOf(c);
             int num = Integer.parseInt(text);
             int[] coordinates = getCoordinates(ARRAYINDEX);
@@ -75,8 +75,7 @@ public class ManualInputAction implements KeyListener {
                     FIELDS[ARRAYINDEX].setForeground(Color.RED);
                 }
             }
-            System.out.println(Arrays.toString(MyUtil.JtextIntoArray(FIELDS)));
-            System.out.println(MyUtil.arrayHasEmptyField(FIELDS));
+
             if (!MyUtil.arrayHasEmptyField(FIELDS)) {
                 int[] fieldsOneD = new int[81];
                 for (int i = 0; i < FIELDS.length; i++) {
@@ -96,6 +95,9 @@ public class ManualInputAction implements KeyListener {
                     }
                 }
             }
+        } else { //TODO make it work for backspace
+            SudokuGUI.win.setText("");
+            SudokuGUI.win2.setText("");
         }
     }
 

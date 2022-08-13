@@ -22,12 +22,14 @@ public class SetupAction implements ActionListener {
     Setup setup = new Setup();
 
     @Override
-    public void actionPerformed(ActionEvent e) { //TODO format
+    public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == SudokuGUI.easy) {
             setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.EASY);
             setup.setSudokuTable();
+            MyUtil.print(setup.sudokuTable);
+            System.out.println();
             int[][] starterMatrix = setup.setup();
             copy = MyUtil.twoDToOneD(starterMatrix);
 
