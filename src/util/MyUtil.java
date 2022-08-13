@@ -2,6 +2,7 @@ package util;
 
 import GUI.ManualInputAction;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -51,4 +52,28 @@ public class MyUtil {
         }
         return resultMatrix;
     }
+
+    public static int[] JtextIntoArray(JTextField[] jTextFields) {
+        int[] resultArray = new int[81];
+        int num = 0;
+        for (int i = 0; i < jTextFields.length; i++) {
+            if (jTextFields[i].getText().equals("")) {
+                num = 0;
+            } else {
+                num = Integer.parseInt(jTextFields[i].getText());
+            }
+            resultArray[i] = num;
+        }
+        return resultArray;
+    }
+
+    public static boolean arrayHasEmptyField(JTextField[] jTextFields) {
+        for (int i = 0; i < jTextFields.length; i++) {
+            if (jTextFields[i].getText().isBlank()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

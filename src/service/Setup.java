@@ -10,6 +10,14 @@ public class Setup {
 
     public static int[][] sudokuTable = new int[9][9];
 
+    public void sudokuTableZeroDown() {
+        for (int i = 0; i < sudokuTable.length; i++) {
+            for (int j = 0; j < sudokuTable.length; j++) {
+                sudokuTable[i][j] = 0;
+            }
+        }
+    }
+
     public void setSudokuTable() {
         sudokuTable[0] = getRandomArray(9);
         Solver.solver(sudokuTable);

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Set;
 
 public class SetupAction implements ActionListener {
 
@@ -24,6 +25,7 @@ public class SetupAction implements ActionListener {
     public void actionPerformed(ActionEvent e) { //TODO format
 
         if (e.getSource() == SudokuGUI.easy) {
+            setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.EASY);
             setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
@@ -44,6 +46,7 @@ public class SetupAction implements ActionListener {
             }
 
         } else if (e.getSource() == SudokuGUI.medium) {
+            setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.MEDIUM);
             setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
@@ -63,7 +66,8 @@ public class SetupAction implements ActionListener {
             }
 
         } else if (e.getSource() == SudokuGUI.hard) {
-            setup.setDifficulty(Difficulty.MEDIUM);
+            setup.sudokuTableZeroDown();
+            setup.setDifficulty(Difficulty.HARD);
             setup.setSudokuTable();
             int[][] starterMatrix = setup.setup();
             copy = MyUtil.twoDToOneD(starterMatrix);

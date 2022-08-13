@@ -24,12 +24,9 @@ public class AutoCheck implements ItemListener {
             int[][] matrix = Setup.sudokuTable;
 
             int[] matrixWithZerosOneD = SetupAction.copy;
-            System.out.println(Arrays.toString(matrixWithZerosOneD));
             int[][] matrixWithZeros = MyUtil.oneDtoTwoD(matrixWithZerosOneD);
 
             int counter = 0;
-
-            MyUtil.print(matrixWithZeros);
 
             for (int i = 0; i < matrix.length; i++) {
                 for (int j = 0; j < matrix.length; j++) {

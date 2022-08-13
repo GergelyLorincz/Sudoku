@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 
 public class ManualInputAction implements KeyListener {
 
@@ -57,12 +58,14 @@ public class ManualInputAction implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+        int index = FocusGainedAction.index;
         char c = e.getKeyChar();
         if ( ((c >= '1') && (c <= '9'))) {
             String text = String.valueOf(c);
             int num = Integer.parseInt(text);
             int[] coordinates = getCoordinates(ARRAYINDEX);
             int[][] matrix = Setup.sudokuTable;
+            FIELDS[index].setText("" + num);
             UndoButtonAction.indexes.add(ARRAYINDEX);
 
             if (SudokuGUI.checkBox) {
@@ -70,6 +73,27 @@ public class ManualInputAction implements KeyListener {
                     FIELDS[ARRAYINDEX].setForeground(Color.BLUE);
                 } else {
                     FIELDS[ARRAYINDEX].setForeground(Color.RED);
+                }
+            }
+            System.out.println(Arrays.toString(MyUtil.JtextIntoArray(FIELDS)));
+            System.out.println(MyUtil.arrayHasEmptyField(FIELDS));
+            if (!MyUtil.arrayHasEmptyField(FIELDS)) {
+                int[] fieldsOneD = new int[81];
+                for (int i = 0; i < FIELDS.length; i++) {
+                    fieldsOneD[i] = Integer.parseInt(FIELDS[i].getText());
+                }
+                int[][] fieldsMatrix = MyUtil.oneDtoTwoD(fieldsOneD);
+
+                for (int i = 0; i < matrix.length; i++) {
+                    for (int j = 0; j < matrix.length; j++) {
+                        if (matrix[i][j] != fieldsMatrix[i][j]) {
+                            SudokuGUI.win.setText("One or more number are wrong.");
+                            SudokuGUI.win2.setText("Please try again");
+                            break;
+                        } else {
+                            SudokuGUI.win.setText("Congratulations, You Won!");
+                        }
+                    }
                 }
             }
         }

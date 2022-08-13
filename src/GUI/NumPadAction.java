@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class NumPadAction implements ActionListener {
 
@@ -50,6 +51,26 @@ public class NumPadAction implements ActionListener {
                 FIELDS[index].setForeground(Color.BLUE);
             } else {
                 FIELDS[index].setForeground(Color.RED);
+            }
+        }
+
+        System.out.println(Arrays.toString(MyUtil.JtextIntoArray(FIELDS)));
+        System.out.println(MyUtil.arrayHasEmptyField(FIELDS));
+        if (!MyUtil.arrayHasEmptyField(FIELDS)) {
+            int[] fieldsOneD = new int[81];
+            for (int i = 0; i < FIELDS.length; i++) {
+                fieldsOneD[i] = Integer.parseInt(FIELDS[i].getText());
+            }
+            int[][] fieldsMatrix = MyUtil.oneDtoTwoD(fieldsOneD);
+
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix.length; j++) {
+                    if (matrix[i][j] != fieldsMatrix[i][j]) {
+                        SudokuGUI.win.setText("One or more number are wrong. Please try again");
+                    } else {
+                        SudokuGUI.win.setText("Congratulations, You Won!");
+                    }
+                }
             }
         }
     }

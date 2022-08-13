@@ -15,6 +15,8 @@ public class SudokuGUI extends JFrame{
     public static JButton undo, hint, restart;
     public static boolean checkBox = false;
     public static JCheckBox autoCheckBox;
+    public static JLabel win;
+    public static JLabel win2;
     int num = 0;
 
     public SudokuGUI() {
@@ -50,6 +52,8 @@ public class SudokuGUI extends JFrame{
         hint = new JButton("Hint");
         restart = new JButton("Restart");
         autoCheckBox = new JCheckBox("Auto-check", false);
+        win = new JLabel("");
+        win2 = new JLabel("");
 
         newGame.setMinimumSize(new Dimension(225,30));
 
@@ -114,7 +118,9 @@ public class SudokuGUI extends JFrame{
                                                 .addComponent(three)
                                                 .addComponent(six)
                                                 .addComponent(nine)))
-                                .addComponent(autoCheckBox)));
+                                .addComponent(autoCheckBox)
+                                .addComponent(win)
+                                .addComponent(win2)));
 
         layout.setVerticalGroup(
                 layout.createParallelGroup(CENTER)
@@ -137,7 +143,9 @@ public class SudokuGUI extends JFrame{
                                                 .addComponent(seven)
                                                 .addComponent(eight)
                                                 .addComponent(nine)))
-                                .addComponent(autoCheckBox)));
+                                .addComponent(autoCheckBox)
+                                .addComponent(win)
+                                .addComponent(win2)));
 
         pack();
 
@@ -174,6 +182,12 @@ public class SudokuGUI extends JFrame{
             fields[i].addKeyListener(manualInputAction);
         }
 
+        for (int i = 0; i < fields.length; i++) {
+            ArrowAction arrowAction = new ArrowAction(i, fields);
+                fields[i].addKeyListener(arrowAction);
+            }
+
+
        for (int i = 0; i < fields.length; i++) {
             fields[i].addFocusListener(focusGainedAction);
        }
@@ -187,7 +201,9 @@ public class SudokuGUI extends JFrame{
             jField.addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent e) {
                     char c = e.getKeyChar();
-                    if (((c < '1') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                    if (((c < '1') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) &&
+                            (c != KeyEvent.VK_UP) && (c != KeyEvent.VK_LEFT) &&
+                            (c != KeyEvent.VK_RIGHT) && (c != KeyEvent.VK_DOWN)) {
                         e.consume();
                     }
                 }
