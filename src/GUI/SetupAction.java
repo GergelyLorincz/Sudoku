@@ -25,6 +25,7 @@ public class SetupAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == SudokuGUI.easy) {
+            MyUtil.enableFields(FIELDS);
             setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.EASY);
             setup.setSudokuTable();
@@ -45,11 +46,13 @@ public class SetupAction implements ActionListener {
                 }
                 if (copy[i] != 0) {
                     FIELDS[i].setText("" + copy[i]);
-                    FIELDS[i].setEditable(false);
+                    FIELDS[i].setEnabled(false);
+                    FIELDS[i].setDisabledTextColor(Color.BLACK);
                 }
             }
 
         } else if (e.getSource() == SudokuGUI.medium) {
+            MyUtil.enableFields(FIELDS);
             setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.MEDIUM);
             setup.setSudokuTable();
@@ -68,11 +71,13 @@ public class SetupAction implements ActionListener {
                 }
                 if (copy[i] != 0) {
                     FIELDS[i].setText("" + copy[i]);
-                    FIELDS[i].setEditable(false);
+                    FIELDS[i].setEnabled(false);
+                    FIELDS[i].setDisabledTextColor(Color.BLACK);
                 }
             }
 
         } else if (e.getSource() == SudokuGUI.hard) {
+            MyUtil.enableFields(FIELDS);
             setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.HARD);
             setup.setSudokuTable();
@@ -91,7 +96,8 @@ public class SetupAction implements ActionListener {
                 }
                 if (copy[i] != 0) {
                     FIELDS[i].setText("" + copy[i]);
-                    FIELDS[i].setEditable(false);
+                    FIELDS[i].setEnabled(false);
+                    FIELDS[i].setDisabledTextColor(Color.BLACK);
                 }
             }
         }

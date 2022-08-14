@@ -76,4 +76,10 @@ public class MyUtil {
         return false;
     }
 
+    public static void enableFields(JTextField[] jTextFields) {
+        for (int i = 0; i < jTextFields.length; i++) {
+            jTextFields[i].setEnabled(true);
+        }
+    }
+
 }
