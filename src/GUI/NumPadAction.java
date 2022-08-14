@@ -20,23 +20,23 @@ public class NumPadAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int index = FocusGainedAction.index;
         int number = 0;
-        if (e.getSource() == SudokuGUI.one) {
+        if (e.getSource() == SudokuGUI.JBUTTON.get("one")) {
             number = 1;
-        } else if (e.getSource() == SudokuGUI.two) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("two")) {
             number = 2;
-        } else if (e.getSource() == SudokuGUI.three) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("three")) {
             number = 3;
-        } else if (e.getSource() == SudokuGUI.four) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("four")) {
             number = 4;
-        } else if (e.getSource() == SudokuGUI.five) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("five")) {
             number = 5;
-        } else if (e.getSource() == SudokuGUI.six) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("six")) {
             number = 6;
-        } else if (e.getSource() == SudokuGUI.seven) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("seven")) {
             number = 7;
-        } else if (e.getSource() == SudokuGUI.eight) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("eight")) {
             number = 8;
-        } else if (e.getSource() == SudokuGUI.nine) {
+        } else if (e.getSource() == SudokuGUI.JBUTTON.get("nine")) {
             number = 9;
         }
         FIELDS[index].setText("" + number);

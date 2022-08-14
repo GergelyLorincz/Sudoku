@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Arrays;
 
 public class AutoCheck implements ItemListener {
 
@@ -17,7 +16,6 @@ public class AutoCheck implements ItemListener {
     public AutoCheck(JTextField[] fields) {
         this.FIELDS = fields;
     }
-
 
     @Override
     public void itemStateChanged(ItemEvent e) {
