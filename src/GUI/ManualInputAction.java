@@ -95,9 +95,14 @@ public class ManualInputAction implements KeyListener {
                     }
                 }
             }
-        } else { //TODO make it work for backspace
-            SudokuGUI.win.setText("");
-            SudokuGUI.win2.setText("");
+        }
+
+        if (c == KeyEvent.VK_BACK_SPACE) {
+            FIELDS[index].setText("");
+            if (MyUtil.arrayHasEmptyField(FIELDS)) {
+                SudokuGUI.win.setText("");
+                SudokuGUI.win2.setText("");
+            }
         }
     }
 

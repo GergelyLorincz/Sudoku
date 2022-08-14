@@ -28,7 +28,6 @@ public class SetupAction implements ActionListener {
             setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.EASY);
             setup.setSudokuTable();
-            MyUtil.print(setup.sudokuTable);
             System.out.println();
             int[][] starterMatrix = setup.setup();
             copy = MyUtil.twoDToOneD(starterMatrix);
@@ -41,6 +40,9 @@ public class SetupAction implements ActionListener {
             }
 
             for (int i = 0; i < copy.length; i++) {
+                if (copy[i] == 0) {
+                    FIELDS[i].setForeground(Color.GRAY);
+                }
                 if (copy[i] != 0) {
                     FIELDS[i].setText("" + copy[i]);
                     FIELDS[i].setEditable(false);
@@ -61,6 +63,9 @@ public class SetupAction implements ActionListener {
             }
 
             for (int i = 0; i < copy.length; i++) {
+                if (copy[i] == 0) {
+                    FIELDS[i].setForeground(Color.GRAY);
+                }
                 if (copy[i] != 0) {
                     FIELDS[i].setText("" + copy[i]);
                     FIELDS[i].setEditable(false);
@@ -81,6 +86,9 @@ public class SetupAction implements ActionListener {
             }
 
             for (int i = 0; i < copy.length; i++) {
+                if (copy[i] == 0) {
+                    FIELDS[i].setForeground(Color.GRAY);
+                }
                 if (copy[i] != 0) {
                     FIELDS[i].setText("" + copy[i]);
                     FIELDS[i].setEditable(false);

@@ -18,13 +18,13 @@ public class ArrowAction implements KeyListener {
     public void keyTyped(KeyEvent e) {
         int index = FocusGainedAction.index;
         if (e.getKeyCode() == KeyEvent.VK_UP && index > 8) {
-            FIELDS[index - 9].requestFocusInWindow();
+            FIELDS[index - 9].grabFocus();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT && index > 0) {
-            FIELDS[index - 1].requestFocusInWindow();
+            FIELDS[index - 1].grabFocus();
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && index < 81) {
-            FIELDS[index + 1].requestFocusInWindow();
+            FIELDS[index + 1].grabFocus();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN && index < 73) {
-            FIELDS[index + 9].requestFocusInWindow();
+            FIELDS[index + 9].grabFocus();
         }
     }
 

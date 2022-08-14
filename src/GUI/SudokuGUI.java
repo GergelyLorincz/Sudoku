@@ -211,9 +211,7 @@ public class SudokuGUI extends JFrame{
             jField.addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent e) {
                     char c = e.getKeyChar();
-                    if (((c < '1') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) &&
-                            (c != KeyEvent.VK_UP) && (c != KeyEvent.VK_LEFT) &&
-                            (c != KeyEvent.VK_RIGHT) && (c != KeyEvent.VK_DOWN)) {
+                    if ((c < '1') || (c > '9')) {
                         e.consume();
                     }
                 }

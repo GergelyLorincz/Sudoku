@@ -14,7 +14,10 @@ public class AutoCheck implements ItemListener {
 
     private final JTextField[] FIELDS;
 
-    public AutoCheck(JTextField[] fields) {this.FIELDS = fields; }
+    public AutoCheck(JTextField[] fields) {
+        this.FIELDS = fields;
+    }
+
 
     @Override
     public void itemStateChanged(ItemEvent e) {
@@ -49,9 +52,23 @@ public class AutoCheck implements ItemListener {
         } else {
             SudokuGUI.checkBox = false;
 
-            for (int i = 0; i < FIELDS.length; i++) {
-                FIELDS[i].setForeground(Color.BLACK);
+            int[][] matrix = Setup.sudokuTable;
+
+            int[] matrixWithZerosOneD = SetupAction.copy;
+            int[][] matrixWithZeros = MyUtil.oneDtoTwoD(matrixWithZerosOneD);
+            int counter2 = 0;
+
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix.length; j++) {
+                    if (matrix[i][j] != matrixWithZeros[i][j]) {
+                        FIELDS[counter2].setForeground(Color.GRAY);
+                    } else {
+                        FIELDS[counter2].setForeground(Color.BLACK);
+                    }
+                    counter2++;
+                }
             }
+
         }
     }
 }
