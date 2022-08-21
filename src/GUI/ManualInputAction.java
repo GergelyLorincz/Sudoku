@@ -52,10 +52,6 @@ public class ManualInputAction implements KeyListener {
         return resultArray;
     }
 
-    /*public void actionPerformed(KeyEvent e) {
-
-    }*/
-
     @Override
     public void keyTyped(KeyEvent e) {
         int index = FocusGainedAction.index;

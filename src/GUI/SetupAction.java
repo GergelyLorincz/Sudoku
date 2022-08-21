@@ -25,80 +25,34 @@ public class SetupAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == SudokuGUI.easy) {
-            MyUtil.enableFields(FIELDS);
-            setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.EASY);
-            setup.setSudokuTable();
-            System.out.println();
-            int[][] starterMatrix = setup.setup();
-            copy = MyUtil.twoDToOneD(starterMatrix);
-
-            for (int i = 0; i < FIELDS.length; i++) {
-                FIELDS[i].setText("");
-                FIELDS[i].setForeground(Color.BLACK);
-                FIELDS[i].setEditable(true);
-                TableBackground.color(FIELDS,i);
-            }
-
-            for (int i = 0; i < copy.length; i++) {
-                if (copy[i] == 0) {
-                    FIELDS[i].setForeground(Color.GRAY);
-                }
-                if (copy[i] != 0) {
-                    FIELDS[i].setText("" + copy[i]);
-                    FIELDS[i].setEnabled(false);
-                    FIELDS[i].setDisabledTextColor(Color.BLACK);
-                }
-            }
-
         } else if (e.getSource() == SudokuGUI.medium) {
-            MyUtil.enableFields(FIELDS);
-            setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.MEDIUM);
-            setup.setSudokuTable();
-            int[][] starterMatrix = setup.setup();
-            copy = MyUtil.twoDToOneD(starterMatrix);
-
-            for (int i = 0; i < FIELDS.length; i++) {
-                FIELDS[i].setText("");
-                FIELDS[i].setForeground(Color.BLACK);
-                FIELDS[i].setEditable(true);
-            }
-
-            for (int i = 0; i < copy.length; i++) {
-                if (copy[i] == 0) {
-                    FIELDS[i].setForeground(Color.GRAY);
-                }
-                if (copy[i] != 0) {
-                    FIELDS[i].setText("" + copy[i]);
-                    FIELDS[i].setEnabled(false);
-                    FIELDS[i].setDisabledTextColor(Color.BLACK);
-                }
-            }
-
         } else if (e.getSource() == SudokuGUI.hard) {
-            MyUtil.enableFields(FIELDS);
-            setup.sudokuTableZeroDown();
             setup.setDifficulty(Difficulty.HARD);
-            setup.setSudokuTable();
-            int[][] starterMatrix = setup.setup();
-            copy = MyUtil.twoDToOneD(starterMatrix);
+        }
+        MyUtil.enableFields(FIELDS);
+        setup.sudokuTableZeroDown();
+        setup.setSudokuTable();
+        System.out.println();
+        int[][] starterMatrix = setup.setup();
+        copy = MyUtil.twoDToOneD(starterMatrix);
 
-            for (int i = 0; i < FIELDS.length; i++) {
-                FIELDS[i].setText("");
-                FIELDS[i].setForeground(Color.BLACK);
-                FIELDS[i].setEditable(true);
+        for (int i = 0; i < FIELDS.length; i++) {
+            FIELDS[i].setText("");
+            FIELDS[i].setForeground(Color.BLACK);
+            FIELDS[i].setEditable(true);
+            TableBackground.color(FIELDS, i);
+        }
+
+        for (int i = 0; i < copy.length; i++) {
+            if (copy[i] == 0) {
+                FIELDS[i].setForeground(Color.GRAY);
             }
-
-            for (int i = 0; i < copy.length; i++) {
-                if (copy[i] == 0) {
-                    FIELDS[i].setForeground(Color.GRAY);
-                }
-                if (copy[i] != 0) {
-                    FIELDS[i].setText("" + copy[i]);
-                    FIELDS[i].setEnabled(false);
-                    FIELDS[i].setDisabledTextColor(Color.BLACK);
-                }
+            if (copy[i] != 0) {
+                FIELDS[i].setText("" + copy[i]);
+                FIELDS[i].setEnabled(false);
+                FIELDS[i].setDisabledTextColor(Color.BLACK);
             }
         }
     }
