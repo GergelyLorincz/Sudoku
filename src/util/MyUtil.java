@@ -1,10 +1,12 @@
 package util;
 
-import GUI.ManualInputAction;
+import action.ManualInputAction;
 
 import javax.swing.*;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class MyUtil {
 
@@ -33,10 +35,9 @@ public class MyUtil {
         int[] resultArray = new int[matrix.length * matrix[0].length];
 
         for(int i = 0; i < matrix.length; i++) {
-            int[] row = matrix[i];
-            for(int j = 0; j < row.length; j++) {
+            for(int j = 0; j < matrix.length; j++) {
                 int number = matrix[i][j];
-                resultArray[i * row.length + j] = number;
+                resultArray[i * matrix.length + j] = number;
             }
         }
         return resultArray;
@@ -46,25 +47,25 @@ public class MyUtil {
         int[][] resultMatrix = new int[9][9];
 
         for (int i = 0; i < array.length; i++) {
-            int[] coordinates = ManualInputAction.getCoordinates(i);
+            int[] coordinates = getCoordinates(i);
             resultMatrix[coordinates[0]][coordinates[1]] = array[i];
 
         }
         return resultMatrix;
     }
 
-    public static int[] JtextIntoArray(JTextField[] jTextFields) {
-        int[] resultArray = new int[81];
-        int num = 0;
-        for (int i = 0; i < jTextFields.length; i++) {
-            if (jTextFields[i].getText().equals("")) {
-                num = 0;
-            } else {
-                num = Integer.parseInt(jTextFields[i].getText());
-            }
-            resultArray[i] = num;
-        }
-        return resultArray;
+    public static List<Integer> convertStringToInt(JTextField[] jArray) {
+        List<Integer> resultList = Arrays.stream(jArray)
+                .map(field -> field.getText().isBlank() ? 0 : Integer.parseInt(field.getText()))
+                .toList();
+
+        /*int[] resultArray = new int[81];
+
+        for (int i = 0; i < jArray.length; i++) {
+            String text = jArray[i].getText();
+            resultArray[i] = text.isBlank() ? 0 : Integer.parseInt(text);
+        }*/
+        return resultList;
     }
 
     public static boolean arrayHasEmptyField(JTextField[] jTextFields) {
@@ -80,6 +81,28 @@ public class MyUtil {
         for (int i = 0; i < jTextFields.length; i++) {
             jTextFields[i].setEnabled(true);
         }
+    }
+
+    public static int[] getCoordinates(int arrayIndex) {
+        int[] resultArray = new int[2];
+        int row;
+        int column;
+
+        if (arrayIndex < 9) {
+            row = 0;
+        } else {
+            row = arrayIndex / 9;
+        }
+
+        if (arrayIndex < 9) {
+            column = arrayIndex;
+        } else {
+            column = arrayIndex % 9;
+        }
+
+        resultArray[0] = row;
+        resultArray[1] = column;
+        return resultArray;
     }
 
 }

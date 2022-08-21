@@ -8,37 +8,38 @@ public class Setup {
 
     private Difficulty difficulty;
 
-    public static int[][] sudokuTable = new int[9][9];
-
     public void sudokuTableZeroDown() {
-        for (int i = 0; i < sudokuTable.length; i++) {
-            for (int j = 0; j < sudokuTable.length; j++) {
-                sudokuTable[i][j] = 0;
+        for (int i = 0; i < Data.originalSudokuTable.length; i++) {
+            for (int j = 0; j < Data.originalSudokuTable.length; j++) {
+                Data.originalSudokuTable[i][j] = 0;
             }
         }
     }
 
+
     public void setSudokuTable() {
-        sudokuTable[0] = getRandomArray(9);
-        Solver.solver(sudokuTable);
+        Data.originalSudokuTable[0] = getRandomArray(9);
+        Solver.solver(Data.originalSudokuTable);
     }
+
 
     public int[][] setup() {
         int[][] resultArray = new int[9][9];
 
         switch (difficulty) {
             case EASY -> {
-                resultArray = sudokuStarter(sudokuTable, 4, 3);
+                resultArray = sudokuStarter(Data.originalSudokuTable, 4, 3);
             }
             case MEDIUM -> {
-                resultArray = sudokuStarter(sudokuTable, 5, 4);
+                resultArray = sudokuStarter(Data.originalSudokuTable, 5, 4);
             }
             case HARD -> {
-                resultArray = sudokuStarter(sudokuTable, 6, 5);
+                resultArray = sudokuStarter(Data.originalSudokuTable, 6, 5);
             }
         }
         return resultArray;
     }
+
 
     public static int[][] sudokuStarter(int[][] sudokuTable, int max, int min) {
         int[][] result = new int[9][9];
@@ -57,6 +58,7 @@ public class Setup {
         }
         return result;
     }
+
 
     public static int[] getRandomArray(int num) {
         int[] randomArray = new int[num];
@@ -79,9 +81,8 @@ public class Setup {
         return randomArray;
     }
 
+
     public Difficulty getDifficulty() {return difficulty; }
 
     public void setDifficulty(Difficulty difficulty) {this.difficulty = difficulty; }
-
-    public int[][] getSudokuTable() {return sudokuTable; }
 }

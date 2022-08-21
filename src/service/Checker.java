@@ -6,6 +6,7 @@ public class Checker {
 
     public static int getGridSize() { return GRID_SIZE; }
 
+
     private static boolean isNumberInRow(int[][] sudokuBoard, int number, int row) {
         for(int i = 0; i < GRID_SIZE; i++) {
             if (sudokuBoard[row][i] == number) {
@@ -15,6 +16,7 @@ public class Checker {
         return false;
     }
 
+
     private static boolean isNumberInColumn(int[][] sudokuBoard, int number, int column) {
         for(int i = 0; i < GRID_SIZE; i++) {
             if (sudokuBoard[i][column] == number) {
@@ -23,6 +25,7 @@ public class Checker {
         }
         return false;
     }
+
 
     private static boolean isNumberInBox(int[][] sudokuBoard,int number, int row, int column) {
         int localBoxRow = row - row % 3;
@@ -38,11 +41,13 @@ public class Checker {
         return false;
     }
 
+
     public static boolean isValidPlacement(int[][] sudokuBoard, int number, int row, int column) {
         return !isNumberInRow(sudokuBoard, number, row) &&
                 !isNumberInColumn(sudokuBoard, number, column) &&
                 !isNumberInBox(sudokuBoard, number, row, column);
     }
+
 
     public static boolean checker(int[][] matrix, int number, int row, int column) {
         return matrix[row][column] == number;

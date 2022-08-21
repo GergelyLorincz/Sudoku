@@ -1,5 +1,8 @@
 package GUI;
 
+import action.*;
+import service.Data;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -7,8 +10,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
-
-import static javax.swing.GroupLayout.Alignment.*;
 
 
 public class SudokuGUI extends JFrame{
@@ -28,16 +29,16 @@ public class SudokuGUI extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JTextField[] fields = emptyFields();
-        JPanel grid = jPanelSetup(fields);
+        Data.userFields = emptyFields();
+        JPanel grid = jPanelSetup(Data.userFields);
 
-        NumPadAction numPadAction = new NumPadAction(fields);
-        SetupAction setupAction = new SetupAction(fields);
-        FocusGainedAction focusGainedAction = new FocusGainedAction(fields);
-        UndoButtonAction undoButtonAction = new UndoButtonAction(fields);
-        HintButtonAction hintButtonAction = new HintButtonAction(fields);
-        RestartButtonAction restartButtonAction = new RestartButtonAction(fields);
-        AutoCheck autoCheck = new AutoCheck(fields);
+        NumPadAction numPadAction = new NumPadAction();
+        SetupAction setupAction = new SetupAction();
+        FocusGainedAction focusGainedAction = new FocusGainedAction();
+        UndoButtonAction undoButtonAction = new UndoButtonAction();
+        HintButtonAction hintButtonAction = new HintButtonAction();
+        RestartButtonAction restartButtonAction = new RestartButtonAction();
+        AutoCheck autoCheck = new AutoCheck();
 
         ImageIcon img = new ImageIcon("src/resource/icon.png");
         setIconImage(img.getImage());
@@ -94,15 +95,16 @@ public class SudokuGUI extends JFrame{
 
         autoCheckBox.addItemListener(autoCheck);
 
-        for (int i = 0; i < fields.length; i++) {
-            ManualInputAction manualInputAction = new ManualInputAction(i, fields);
-            fields[i].addKeyListener(manualInputAction);
+        for (int i = 0; i < Data.userFields.length; i++) {
+            ManualInputAction manualInputAction = new ManualInputAction(i);
+            Data.userFields[i].addKeyListener(manualInputAction);
         }
 
-       for (int i = 0; i < fields.length; i++) {
-            fields[i].addFocusListener(focusGainedAction);
+       for (int i = 0; i < Data.userFields.length; i++) {
+           Data.userFields[i].addFocusListener(focusGainedAction);
        }
     }
+
 
     private JTextField[] emptyFields() {
         JTextField[] resultArray = new JTextField[81];
@@ -125,6 +127,7 @@ public class SudokuGUI extends JFrame{
         return resultArray;
     }
 
+
     private JPanel jPanelSetup(JTextField[] fields) {
         JPanel grid = new JPanel();
         GridLayout gridLayout = new GridLayout(9,9);
@@ -139,6 +142,7 @@ public class SudokuGUI extends JFrame{
         return grid;
     }
 
+
     private JButton createButton(String name, boolean isNumberButton) {
         JButton jButton = new JButton(name);
         if (isNumberButton) {
@@ -149,6 +153,7 @@ public class SudokuGUI extends JFrame{
         }
         return jButton;
     }
+
 
     private void numPadActionSetup(NumPadAction numPadAction, JButton... jButtons) {
         for (JButton jButton : jButtons) {

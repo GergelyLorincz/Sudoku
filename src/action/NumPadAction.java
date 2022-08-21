@@ -1,6 +1,8 @@
-package GUI;
+package action;
 
+import GUI.SudokuGUI;
 import service.Checker;
+import service.Data;
 import service.Setup;
 import util.MyUtil;
 
@@ -12,13 +14,8 @@ import java.util.Arrays;
 
 public class NumPadAction implements ActionListener {
 
-    private final JTextField[] FIELDS;
-
-    public NumPadAction(JTextField[] fields) {this.FIELDS = fields; }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        int index = FocusGainedAction.index;
         int number = 0;
         if (e.getSource() == SudokuGUI.JBUTTON.get("one")) {
             number = 1;
@@ -39,33 +36,29 @@ public class NumPadAction implements ActionListener {
         } else if (e.getSource() == SudokuGUI.JBUTTON.get("nine")) {
             number = 9;
         }
-        FIELDS[index].setText("" + number);
-        UndoButtonAction.indexes.add(index);
+        Data.userFields[Data.focusIndex].setText("" + number);
+        Data.getIndexes().add(Data.focusIndex);
 
-        int[] coordinates = ManualInputAction.getCoordinates(index);
-        int[] array = ManualInputAction.convertStringToInt(FIELDS);
-        int[][] matrix = Setup.sudokuTable;
+        int[] coordinates = MyUtil.getCoordinates(Data.focusIndex);
 
         if (SudokuGUI.checkBox) {
-            if (Checker.checker(matrix, number, coordinates[0], coordinates[1])) {
-                FIELDS[index].setForeground(Color.BLUE);
+            if (Checker.checker(Data.originalSudokuTable, number, coordinates[0], coordinates[1])) {
+                Data.userFields[Data.focusIndex].setForeground(Color.BLUE);
             } else {
-                FIELDS[index].setForeground(Color.RED);
+                Data.userFields[Data.focusIndex].setForeground(Color.RED);
             }
         }
 
-        System.out.println(Arrays.toString(MyUtil.JtextIntoArray(FIELDS)));
-        System.out.println(MyUtil.arrayHasEmptyField(FIELDS));
-        if (!MyUtil.arrayHasEmptyField(FIELDS)) {
+        if (!MyUtil.arrayHasEmptyField(Data.userFields)) {
             int[] fieldsOneD = new int[81];
-            for (int i = 0; i < FIELDS.length; i++) {
-                fieldsOneD[i] = Integer.parseInt(FIELDS[i].getText());
+            for (int i = 0; i < Data.userFields.length; i++) {
+                fieldsOneD[i] = Integer.parseInt(Data.userFields[i].getText());
             }
             int[][] fieldsMatrix = MyUtil.oneDtoTwoD(fieldsOneD);
 
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix.length; j++) {
-                    if (matrix[i][j] != fieldsMatrix[i][j]) {
+            for (int i = 0; i < Data.originalSudokuTable.length; i++) {
+                for (int j = 0; j < Data.originalSudokuTable.length; j++) {
+                    if (Data.originalSudokuTable[i][j] != fieldsMatrix[i][j]) {
                         SudokuGUI.win.setText("One or more number are wrong. Please try again");
                     } else {
                         SudokuGUI.win.setText("Congratulations, You Won!");

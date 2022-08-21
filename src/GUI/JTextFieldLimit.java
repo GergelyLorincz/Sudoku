@@ -7,17 +7,18 @@ import javax.swing.text.PlainDocument;
 
 public class JTextFieldLimit extends PlainDocument {
 
-    private int limit;
+    private final int LIMIT;
 
     JTextFieldLimit(int limit) {
         super();
-        this.limit = limit;
+        this.LIMIT = limit;
     }
+
 
     public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
         if (str == null) return;
 
-        if ((getLength() + str.length()) <= limit) {
+        if ((getLength() + str.length()) <= LIMIT) {
             super.insertString(offset, str, attr);
         }
     }

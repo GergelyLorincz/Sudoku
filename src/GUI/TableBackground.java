@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class TableBackground {
 
-    private static boolean[][] boardMatrix = new boolean[9][9];
-    private static boolean[] board = new boolean[81];
+    private static boolean[][] boardMatrix;
+    private static boolean[] board;
 
     private static void trueOrFalse(boolean[][] sudokuBoard, int row, int column) {
         int localBoxRow = row - row % 3;
@@ -21,35 +21,42 @@ public class TableBackground {
         }
     }
 
+
     private static void upload() {
 
-        for (int i = 0; i < boardMatrix.length; i++) {
-            for (int j = 0; j < boardMatrix.length; j++) {
-                trueOrFalse(boardMatrix,i,j);
+        if (boardMatrix == null) {
+            boardMatrix = new boolean[9][9];
+            board = new boolean[81];
+
+            for (int i = 0; i < boardMatrix.length; i++) {
+                for (int j = 0; j < boardMatrix.length; j++) {
+                    trueOrFalse(boardMatrix, i, j);
+                }
             }
         }
     }
 
-    private static void twoDToOneD(boolean[][] matrix) {
+
+    private static void twoDToOneD() {
         upload();
 
-        for(int i = 0; i < matrix.length; i++) {
-            boolean[] row = matrix[i];
+        for(int i = 0; i < boardMatrix.length; i++) {
+            boolean[] row = boardMatrix[i];
             for(int j = 0; j < row.length; j++) {
-                boolean value = matrix[i][j];
+                boolean value = boardMatrix[i][j];
                 board[i * row.length + j] = value;
             }
         }
     }
 
+
     public static void color(JTextField[] jTextFields, int index) {
-        twoDToOneD(boardMatrix);
+        twoDToOneD();
 
-            if (board[index]) {
-                jTextFields[index].setBackground(Color.LIGHT_GRAY);
-            } else {
-                jTextFields[index].setBackground(Color.WHITE);
-            }
+        if (board[index]) {
+            jTextFields[index].setBackground(Color.LIGHT_GRAY);
+        } else {
+            jTextFields[index].setBackground(Color.WHITE);
         }
-
+    }
 }
