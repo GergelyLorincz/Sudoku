@@ -14,7 +14,7 @@ public class JTextFieldLimit extends PlainDocument {
         this.LIMIT = limit;
     }
 
-
+    /** Limits the number of inputs a user can enter. The limit can be set in the input parameter. */
     public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
         if (str == null) return;
 

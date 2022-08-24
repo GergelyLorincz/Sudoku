@@ -49,17 +49,18 @@ public class NumPadAction implements ActionListener {
             }
         }
 
+        /** Checks if any of the fields are empty after every input. If not, it compares the user sudkou table
+         * with the original. If they are equal it changes an empty label with a winning message. If they are not
+         * equal it warns the user that one or more inputs are wrong. */
         if (!MyUtil.arrayHasEmptyField(Data.userFields)) {
-            int[] fieldsOneD = new int[81];
-            for (int i = 0; i < Data.userFields.length; i++) {
-                fieldsOneD[i] = Integer.parseInt(Data.userFields[i].getText());
-            }
-            int[][] fieldsMatrix = MyUtil.oneDtoTwoD(fieldsOneD);
-
             for (int i = 0; i < Data.originalSudokuTable.length; i++) {
                 for (int j = 0; j < Data.originalSudokuTable.length; j++) {
-                    if (Data.originalSudokuTable[i][j] != fieldsMatrix[i][j]) {
-                        SudokuGUI.win.setText("One or more number are wrong. Please try again");
+                    String fieldToString =  Data.userFields[i * Data.originalSudokuTable.length + j].getText();
+                    int userFieldNum = Integer.parseInt(fieldToString);
+                    if (Data.originalSudokuTable[i][j] != userFieldNum) {
+                        SudokuGUI.win.setText("One or more numbers are wrong.");
+                        SudokuGUI.win2.setText("Please try again");
+                        break;
                     } else {
                         SudokuGUI.win.setText("Congratulations, You Won!");
                     }
@@ -68,6 +69,7 @@ public class NumPadAction implements ActionListener {
         }
     }
 }
+
 
 
 

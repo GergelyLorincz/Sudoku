@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class HintButtonAction implements ActionListener {
 
+    /** Counts the empty fields in the sudoku table. */
     private int getNumberOfEmptyFields() {
         int counter = 0;
 
@@ -23,7 +24,8 @@ public class HintButtonAction implements ActionListener {
         return counter;
     }
 
-
+    /** Returns a random number between the number of empty fields and one. It is used to get a random index where
+     * the hinted number can be placed. */
     private int getRandomField() {
         int numberOfEmptyFields = getNumberOfEmptyFields();
         if (numberOfEmptyFields == 0) {
@@ -32,7 +34,7 @@ public class HintButtonAction implements ActionListener {
         return MyUtil.getRandomInt(numberOfEmptyFields, 1);
     }
 
-
+    /** Returns the index from the user sudoku table where the hinted number is located. */
     private int getIndexOfMatrix() {
         int randomField = getRandomField();
 
@@ -56,7 +58,8 @@ public class HintButtonAction implements ActionListener {
         return indexCounter;
     }
 
-
+    /** Gets the coordinates of the number in the original sudoku table using the getCoordinates method from the
+     * MyUtil class. Places the number found on that index. */
     @Override
     public void actionPerformed(ActionEvent e) {
         int indexOfHint = getIndexOfMatrix();

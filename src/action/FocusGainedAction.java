@@ -8,6 +8,7 @@ import java.awt.event.FocusListener;
 
 public class FocusGainedAction implements FocusListener {
 
+    /** Provides the number of index where the focus is placed on the sudoku table by the user. */
     @Override
     public void focusGained(FocusEvent e) {
         for (int i = 0; i < Data.userFields.length; i++) {

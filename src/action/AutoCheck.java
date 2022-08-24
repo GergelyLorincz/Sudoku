@@ -12,6 +12,11 @@ import java.awt.event.ItemListener;
 
 public class AutoCheck implements ItemListener {
 
+    /** Connected to JCheckBox, which allows the user to see if the entered numbers are correct or not. It also shows
+     * the correctness retrospectively. It compares the original generated sudoku table with the one that has been
+     * set up with empty fields at the beginning of the game. If the given field is not equal to the one in the
+     * original it compares the original again with the user inputs. If the checkbox gets unchecked the method
+     * turns the numbers back to gray. It uses the same comparison what is used at the beginning of the method. */
     @Override
     public void itemStateChanged(ItemEvent e) {
         SudokuGUI.checkBox = e.getStateChange() == ItemEvent.SELECTED;

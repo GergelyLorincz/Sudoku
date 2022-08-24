@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Data {
 
+    /** This class contains almost every collection or variable that is used in the application. */
     public static int[][] originalSudokuTable = new int[9][9];
     public static int[][] originalSudokuTableWithZeros = new int[9][9];
     public static JTextField[] userFields = new JTextField[81];
