@@ -8,6 +8,7 @@ public class TableBackground {
     private static boolean[][] boardMatrix;
     private static boolean[] board;
 
+    /** Sets every field of a matrix with true or false values depending on location of the given 3x3 block. */
     private static void trueOrFalse(boolean[][] sudokuBoard, int row, int column) {
         int localBoxRow = row - row % 3;
         int localBoxCloumn = column - column % 3;
@@ -21,7 +22,8 @@ public class TableBackground {
         }
     }
 
-
+    /** Uploads a 9x9 size matrix with true or false values using the trueOrFalse method above. The method is created
+     * so that every second 3x3 block's gets different values. */
     private static void upload() {
 
         if (boardMatrix == null) {
@@ -36,7 +38,7 @@ public class TableBackground {
         }
     }
 
-
+    /** Implements the upload method from above. Turns the matrix into a one dimensional array. */
     private static void twoDToOneD() {
         upload();
 
@@ -49,7 +51,7 @@ public class TableBackground {
         }
     }
 
-
+    /** Sets the background color of each field depending on the true or false value. */
     public static void color(JTextField[] jTextFields, int index) {
         twoDToOneD();
 

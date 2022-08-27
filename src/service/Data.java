@@ -13,6 +13,7 @@ public class Data {
     public static int[] oneDTableWithZeros = new int[81];
     private static List<Integer> indexes;
     public static int focusIndex;
+    public static int hintCounter;
 
     public static List<Integer> getIndexes() {
         if (indexes == null) {

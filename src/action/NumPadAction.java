@@ -14,6 +14,9 @@ import java.util.Arrays;
 
 public class NumPadAction implements ActionListener {
 
+    /** Places a number into the user sudoku table depending on the button that is clicked. Uses the FocusGained method
+     * to determine where to put the input. If the checkbox linked to the Autocheck class is checked, it checks if
+     * the number is right or wrong. */
     @Override
     public void actionPerformed(ActionEvent e) {
         int number = 0;
@@ -41,6 +44,8 @@ public class NumPadAction implements ActionListener {
 
         int[] coordinates = MyUtil.getCoordinates(Data.focusIndex);
 
+        /** Only used when the checkbox is checked. Uses the checker method from the Checker class to compare
+         * the user input with the number of the original sudoku table on the given index. */
         if (SudokuGUI.checkBox) {
             if (Checker.checker(Data.originalSudokuTable, number, coordinates[0], coordinates[1])) {
                 Data.userFields[Data.focusIndex].setForeground(Color.BLUE);
@@ -53,6 +58,8 @@ public class NumPadAction implements ActionListener {
          * with the original. If they are equal it changes an empty label with a winning message. If they are not
          * equal it warns the user that one or more inputs are wrong. */
         if (!MyUtil.arrayHasEmptyField(Data.userFields)) {
+            SudokuGUI.win.setText("Congratulations, You Won!");
+            SudokuGUI.win2.setText("");
             for (int i = 0; i < Data.originalSudokuTable.length; i++) {
                 for (int j = 0; j < Data.originalSudokuTable.length; j++) {
                     String fieldToString =  Data.userFields[i * Data.originalSudokuTable.length + j].getText();
@@ -60,9 +67,6 @@ public class NumPadAction implements ActionListener {
                     if (Data.originalSudokuTable[i][j] != userFieldNum) {
                         SudokuGUI.win.setText("One or more numbers are wrong.");
                         SudokuGUI.win2.setText("Please try again");
-                        break;
-                    } else {
-                        SudokuGUI.win.setText("Congratulations, You Won!");
                     }
                 }
             }

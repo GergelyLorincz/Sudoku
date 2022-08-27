@@ -62,6 +62,11 @@ public class HintButtonAction implements ActionListener {
      * MyUtil class. Places the number found on that index. */
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (Data.hintCounter == 2) {
+            SudokuGUI.JBUTTON.get("hint").setEnabled(false);
+            SudokuGUI.hintLabel.setText("You are out of hints");
+        }
+
         int indexOfHint = getIndexOfMatrix();
 
         if (indexOfHint != -1) {
@@ -71,5 +76,8 @@ public class HintButtonAction implements ActionListener {
                 Data.userFields[indexOfHint].setForeground(Color.BLUE);
             }
         }
+
+        Data.hintCounter++;
+        SudokuGUI.JBUTTON.get("hint").setText("Hint " + "(" + (3 - Data.hintCounter) + ")");
     }
 }

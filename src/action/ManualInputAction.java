@@ -44,16 +44,15 @@ public class ManualInputAction implements KeyListener {
              * with the original one. If they are equal it changes an empty label with a winning message. If they are
              * not equal it warns the user that one or more inputs are wrong. */
             if (!MyUtil.arrayHasEmptyField(Data.userFields)) {
+                SudokuGUI.win.setText("Congratulations, You Won!");
+                SudokuGUI.win2.setText("");
                 for (int i = 0; i < Data.originalSudokuTable.length; i++) {
                     for (int j = 0; j < Data.originalSudokuTable.length; j++) {
                         String fieldToString =  Data.userFields[i * Data.originalSudokuTable.length + j].getText();
                         int userFieldNum = Integer.parseInt(fieldToString);
                         if (Data.originalSudokuTable[i][j] != userFieldNum) {
-                            SudokuGUI.win.setText("One or more numbers are wrong.");
+                            SudokuGUI.win.setText("One or more numbers are wrong");
                             SudokuGUI.win2.setText("Please try again");
-                            break;
-                        } else {
-                            SudokuGUI.win.setText("Congratulations, You Won!");
                         }
                     }
                 }

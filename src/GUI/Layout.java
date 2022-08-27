@@ -13,8 +13,9 @@ public class Layout extends GroupLayout {
 
     }
 
+    /** The layout of the graphic userface. Grouplayout is used with autoCrateGaps. */
     public void setLayout(JPanel grid, Map<String,JButton> jButtonMap,
-                           JCheckBox autoCheckBox, JLabel win, JLabel win2) {
+                           JCheckBox autoCheckBox, JLabel win, JLabel win2, JLabel hintLabel) {
         setAutoCreateGaps(true);
         setAutoCreateContainerGaps(true);
 
@@ -22,6 +23,7 @@ public class Layout extends GroupLayout {
                 createSequentialGroup()
                         .addComponent(grid)
                         .addGroup(createParallelGroup(CENTER)
+                                .addComponent(hintLabel)
                                 .addGroup(createSequentialGroup()
                                         .addComponent(jButtonMap.get("undo"))
                                         .addComponent(jButtonMap.get("hint"))
@@ -47,6 +49,7 @@ public class Layout extends GroupLayout {
                 createParallelGroup(CENTER)
                         .addComponent(grid)
                         .addGroup(createSequentialGroup()
+                                .addComponent(hintLabel)
                                 .addGroup(createParallelGroup(CENTER)
                                         .addComponent(jButtonMap.get("undo"))
                                         .addComponent(jButtonMap.get("hint"))
